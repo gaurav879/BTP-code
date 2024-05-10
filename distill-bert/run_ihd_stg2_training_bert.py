@@ -211,7 +211,7 @@ def re_init_layers(model, config):
     if args.reinit_n_layers > 0:
         print(f'Reinitializing Last {args.reinit_n_layers} Layers ...')
         encoder_temp = getattr(model, 'distil-bert')
-        for layer in encoder_temp.encoder.layer[-args.reinit_n_layers:]:
+        for layer in encoder_temp.transfomer.layer[-args.reinit_n_layers:]:
             for module in layer.modules():
                 if isinstance(module, nn.Linear):
                     module.weight.data.normal_(
